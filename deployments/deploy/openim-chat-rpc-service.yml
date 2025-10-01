@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: chat
+  name: chat-rpc-service
+spec:
+  selector:
+    app: chat-rpc-server
+  ports:
+    - name: rpc-30300
+      protocol: TCP
+      port: 30300
+      targetPort: 30300
+  type: ClusterIP

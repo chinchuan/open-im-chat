@@ -60,7 +60,7 @@ jobs:
 
                   # Read each tag and append --tag arguments
                   while IFS= read -r tag; do
-                      tag_args+=(--tag "ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME:$tag")
+                      tag_args+=(--tag "ghcr.io/${{ github.repository }}/$IMAGE_NAME:$tag")
                   done <<< "${{ steps.meta.outputs.tags }}"
 
                   # Build and push the Docker image with all tags

@@ -54,21 +54,14 @@ jobs:
               if [ -n "$dockerfile" ] && [ -f "$dockerfile" ]; then
                   IMAGE_NAME=$(basename "$dir")
                   echo "Building Docker image for $IMAGE_NAME with tags:"
-                  
-                  # Initialize tag arguments
-                  tag_args=()
-
-                  # Read each tag and append --tag arguments
-                  while IFS= read -r tag; do
-                      tag_args+=(--tag "ghcr.io/${{ github.repository }}/$IMAGE_NAME:$tag")
-                  done <<< "${{ steps.meta.outputs.tags }}"
-
-                  # Build and push the Docker image with all tags
+              
                   docker buildx build --platform linux/amd64 \
                     --file "$dockerfile" \
-                    "${tag_args[@]}" \
+                    --tag "ghcr.io/${{ github.repository }}/$IMAGE_NAME:${{ github.event.inputs.tag }}" \
                     --push \
                     "."
+
+      
               else
                   echo "No valid Dockerfile found in $dir"
               fi

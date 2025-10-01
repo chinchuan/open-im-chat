@@ -37,21 +37,23 @@ data:
 
   mongodb.yml: |
     # URI for database connection, leave empty if using address and credential settings directly
-    uri: 'mongodb://chat:rollgame_chat@202.79.169.45:27017/chat?authSource=chat&directConnection=true '
+    uri: 'mongodb://chat:rollgame_chat@202.79.169.45:27017/chat?authSource=chat&directConnection=true'
     # List of MongoDB server addresses
-    address: [ ]
+    address: 
+      - "202.79.169.45:27017"
     # Name of the database
-    database: 
+    database: "chat"
     # Username for database authentication
-    username: 
+    username: "chat"
     # Password for database authentication
-    password: # 
+    password: "rollgame_chat"
     # Authentication source for database authentication, if use root user, set it to admin
-    authSource: 
+    authSource: "chat"
     # Maximum number of connections in the connection pool
     maxPoolSize: 100
     # Maximum number of retry attempts for a failed database connection
     maxRetry: 10
+    MongoMode: "standalone"
 
   redis.yml: |
     # List of Redis server addresses
